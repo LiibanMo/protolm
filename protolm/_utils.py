@@ -1,5 +1,7 @@
 import torch
 
+PAD_ID = 256
+
 
 class DeviceInfo:
     @classmethod

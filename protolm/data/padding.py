@@ -1,9 +1,11 @@
 import torch
 from torch.nn.utils.rnn import pad_sequence
 
+from protolm._utils import PAD_ID
+
 
 def pad_batch(
-    batch: list[list[int]], value: int = 256
+    batch: list[list[int]], value: int = PAD_ID
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
     Args:

@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 
+from protolm._utils import PAD_ID
 from protolm.models.transformer import CausalTransformer
 
 
@@ -14,8 +15,8 @@ class EntropyModel(nn.Module):
         d_ff: int,
         n_layers: int,
         dropout: float = 0.0,
-        byte_vocab_size: int = 256,
-        padding_idx: int = 256,
+        byte_vocab_size: int = PAD_ID,
+        padding_idx: int = PAD_ID,
     ) -> None:
         super().__init__()
 
@@ -52,7 +53,7 @@ class EntropyModel(nn.Module):
             byte_mask: A mask with shape ``(batch_size, seq_len)`` and dtype ``torch.bool``
 
         Result:
-            A tensor of raw logits with shape ``(batch_size, seq_len, 256)``
+            A tensor of raw logits with shape ``(batch_size, seq_len, PAD_ID)``
         """
         if byte_mask is None:
             byte_mask = byte_ids != self.padding_idx
